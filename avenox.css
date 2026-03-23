@@ -1,0 +1,655 @@
+/* ============================================================
+   AvenoxTheme — Pterodactyl / Reviactyl Panel
+   Minecraft End aesthetic: void, dragon, chorus, obsidian
+   github.com/YOUR_USERNAME/avenox-theme
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Share+Tech+Mono&family=Nunito:wght@300;400;500;600&display=swap');
+
+/* ── Custom Properties ──────────────────────────────────────── */
+:root {
+  /* Core palette — The End */
+  --end-void:        #0a0612;   /* deepest void black */
+  --end-deep:        #0f0a1a;   /* panel backgrounds */
+  --end-dark:        #16102a;   /* sidebar / cards */
+  --end-mid:         #1e1638;   /* elevated surfaces */
+  --end-surface:     #261d46;   /* hover states */
+  --end-border:      #3d2d66;   /* borders */
+  --end-glow:        #7c5cbf;   /* primary glow */
+  --end-purple:      #9b6ee0;   /* primary accent */
+  --end-lavender:    #b899f0;   /* lighter accent */
+  --end-white:       #e0d4ff;   /* near-white text */
+  --end-chorus:      #c17fff;   /* chorus fruit pink-purple */
+  --end-pearl:       #f4f0ff;   /* ender pearl white */
+
+  /* Endstone tones */
+  --end-stone:       #c8c07a;   /* endstone beige */
+  --end-stone-dark:  #9a935c;   /* dark endstone */
+
+  /* Status colours */
+  --end-success:     #68d9a0;
+  --end-warning:     #f0c060;
+  --end-danger:      #e05060;
+  --end-info:        #60b8f0;
+
+  /* Typography */
+  --font-display:    'Cinzel', serif;
+  --font-mono:       'Share Tech Mono', monospace;
+  --font-body:       'Nunito', sans-serif;
+
+  /* Glow sizes */
+  --glow-sm:   0 0 6px rgba(155, 110, 224, 0.5);
+  --glow-md:   0 0 14px rgba(155, 110, 224, 0.45);
+  --glow-lg:   0 0 28px rgba(155, 110, 224, 0.4);
+  --glow-text: 0 0 10px rgba(184, 153, 240, 0.7);
+
+  /* Radii */
+  --r-sm: 4px;
+  --r-md: 8px;
+  --r-lg: 14px;
+}
+
+/* ── Reset + Base ───────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  font-family: var(--font-body);
+  background-color: var(--end-void);
+  color: var(--end-white);
+  min-height: 100vh;
+  line-height: 1.6;
+  font-size: 14px;
+}
+
+/* Void starfield background */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    radial-gradient(1px 1px at 15% 20%, rgba(184,153,240,0.8) 0%, transparent 100%),
+    radial-gradient(1px 1px at 45% 65%, rgba(184,153,240,0.6) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 70% 10%, rgba(255,255,255,0.5) 0%, transparent 100%),
+    radial-gradient(1px 1px at 85% 50%, rgba(184,153,240,0.7) 0%, transparent 100%),
+    radial-gradient(1px 1px at 30% 80%, rgba(255,255,255,0.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 60% 35%, rgba(193,127,255,0.6) 0%, transparent 100%),
+    radial-gradient(1px 1px at 92% 75%, rgba(184,153,240,0.5) 0%, transparent 100%),
+    radial-gradient(1px 1px at 8%  55%, rgba(255,255,255,0.3) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 50% 90%, rgba(193,127,255,0.7) 0%, transparent 100%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+body > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Scrollbar ──────────────────────────────────────────────── */
+::-webkit-scrollbar             { width: 6px; height: 6px; }
+::-webkit-scrollbar-track       { background: var(--end-deep); }
+::-webkit-scrollbar-thumb       { background: var(--end-border); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--end-glow); }
+
+/* ── Typography ─────────────────────────────────────────────── */
+h1, h2, h3, h4, h5 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: var(--end-lavender);
+  letter-spacing: 0.04em;
+  text-shadow: var(--glow-text);
+}
+
+h1 { font-size: 1.8rem; }
+h2 { font-size: 1.4rem; }
+h3 { font-size: 1.15rem; }
+
+a {
+  color: var(--end-chorus);
+  text-decoration: none;
+  transition: color 0.2s, text-shadow 0.2s;
+}
+a:hover {
+  color: var(--end-pearl);
+  text-shadow: var(--glow-text);
+}
+
+code, pre, .monospace {
+  font-family: var(--font-mono);
+  color: var(--end-chorus);
+}
+
+/* ── Sidebar / Navigation ───────────────────────────────────── */
+.navigation-bar,
+#app > div > nav,
+nav.sidebar,
+.sidebar {
+  background: var(--end-dark) !important;
+  border-right: 1px solid var(--end-border) !important;
+  box-shadow: 4px 0 20px rgba(124, 92, 191, 0.25) !important;
+}
+
+/* Logo area */
+.navigation-bar .header,
+.sidebar .logo,
+.sidebar-logo {
+  background: linear-gradient(135deg, var(--end-deep), var(--end-mid)) !important;
+  border-bottom: 1px solid var(--end-border) !important;
+  padding: 16px !important;
+}
+
+.navigation-bar .header a,
+.sidebar-logo a {
+  font-family: var(--font-display) !important;
+  font-size: 1.2rem !important;
+  color: var(--end-lavender) !important;
+  text-shadow: var(--glow-text) !important;
+  letter-spacing: 0.06em !important;
+}
+
+/* Nav links */
+.navigation-bar a,
+.sidebar a,
+nav a {
+  color: #a090c8 !important;
+  transition: all 0.2s !important;
+  border-radius: var(--r-sm) !important;
+  padding: 8px 14px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+}
+
+.navigation-bar a:hover,
+.sidebar a:hover,
+nav a:hover {
+  color: var(--end-pearl) !important;
+  background: rgba(155, 110, 224, 0.12) !important;
+  text-shadow: 0 0 8px rgba(184,153,240,0.5) !important;
+}
+
+.navigation-bar a.active,
+.navigation-bar a[aria-current],
+nav a.active {
+  color: var(--end-lavender) !important;
+  background: rgba(155, 110, 224, 0.2) !important;
+  border-left: 3px solid var(--end-purple) !important;
+  box-shadow: inset 0 0 12px rgba(155, 110, 224, 0.1) !important;
+}
+
+/* ── Main Content Area ──────────────────────────────────────── */
+.content-box,
+.container,
+main,
+.main-content {
+  background: transparent !important;
+}
+
+/* ── Cards / Boxes ──────────────────────────────────────────── */
+.card,
+.box,
+.ContentBox,
+[class*="ContentBox"],
+[class*="ServerCard"],
+[class*="server-card"],
+.gray-200,
+.bg-white {
+  background: var(--end-dark) !important;
+  border: 1px solid var(--end-border) !important;
+  border-radius: var(--r-lg) !important;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.4), var(--glow-sm) !important;
+  color: var(--end-white) !important;
+  transition: box-shadow 0.25s, border-color 0.25s !important;
+}
+
+.card:hover,
+.box:hover,
+[class*="ServerCard"]:hover {
+  border-color: var(--end-glow) !important;
+  box-shadow: 0 6px 28px rgba(0,0,0,0.5), var(--glow-md) !important;
+}
+
+/* Card headers */
+.card > .header,
+.box > .header,
+[class*="ContentBox"] > div:first-child {
+  background: linear-gradient(135deg, var(--end-mid), var(--end-dark)) !important;
+  border-bottom: 1px solid var(--end-border) !important;
+  border-radius: var(--r-lg) var(--r-lg) 0 0 !important;
+  padding: 14px 18px !important;
+  font-family: var(--font-display) !important;
+  color: var(--end-lavender) !important;
+  letter-spacing: 0.03em !important;
+}
+
+/* ── Server Row / Server List ───────────────────────────────── */
+[class*="ServerRow"],
+[class*="server-row"] {
+  background: var(--end-dark) !important;
+  border: 1px solid var(--end-border) !important;
+  border-radius: var(--r-md) !important;
+  margin-bottom: 8px !important;
+  transition: all 0.2s !important;
+}
+
+[class*="ServerRow"]:hover,
+[class*="server-row"]:hover {
+  background: var(--end-mid) !important;
+  border-color: var(--end-glow) !important;
+  box-shadow: var(--glow-sm) !important;
+}
+
+/* ── Buttons ────────────────────────────────────────────────── */
+.button,
+button,
+.btn,
+[class*="Button"],
+input[type="submit"],
+input[type="button"] {
+  font-family: var(--font-body) !important;
+  font-weight: 600 !important;
+  border-radius: var(--r-md) !important;
+  transition: all 0.2s !important;
+  cursor: pointer !important;
+  letter-spacing: 0.02em !important;
+}
+
+/* Primary button */
+.button.primary,
+.btn-primary,
+button[class*="primary"],
+[class*="Button"][class*="primary"] {
+  background: linear-gradient(135deg, #6d44b8, #9b6ee0) !important;
+  border: 1px solid var(--end-glow) !important;
+  color: var(--end-pearl) !important;
+  box-shadow: var(--glow-sm) !important;
+}
+
+.button.primary:hover,
+.btn-primary:hover {
+  background: linear-gradient(135deg, #7e55c9, #b080f0) !important;
+  box-shadow: var(--glow-md) !important;
+  transform: translateY(-1px) !important;
+}
+
+/* Danger button */
+.button.danger, .btn-danger {
+  background: linear-gradient(135deg, #8b2030, #c03048) !important;
+  border: 1px solid var(--end-danger) !important;
+  color: #ffd0d8 !important;
+}
+
+.button.danger:hover, .btn-danger:hover {
+  background: linear-gradient(135deg, #a02840, #d84060) !important;
+  box-shadow: 0 0 14px rgba(224, 80, 96, 0.45) !important;
+}
+
+/* Secondary / outline */
+.button.secondary, .btn-secondary {
+  background: transparent !important;
+  border: 1px solid var(--end-border) !important;
+  color: var(--end-lavender) !important;
+}
+
+.button.secondary:hover, .btn-secondary:hover {
+  border-color: var(--end-purple) !important;
+  background: rgba(155, 110, 224, 0.1) !important;
+}
+
+/* ── Form Elements ──────────────────────────────────────────── */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+input[type="search"],
+textarea,
+select {
+  background: var(--end-deep) !important;
+  border: 1px solid var(--end-border) !important;
+  border-radius: var(--r-md) !important;
+  color: var(--end-white) !important;
+  padding: 9px 13px !important;
+  font-family: var(--font-body) !important;
+  transition: border-color 0.2s, box-shadow 0.2s !important;
+  outline: none !important;
+}
+
+input:focus, textarea:focus, select:focus {
+  border-color: var(--end-purple) !important;
+  box-shadow: 0 0 0 3px rgba(155, 110, 224, 0.25) !important;
+}
+
+input::placeholder, textarea::placeholder {
+  color: #6a5a8a !important;
+}
+
+select option {
+  background: var(--end-dark) !important;
+  color: var(--end-white) !important;
+}
+
+label {
+  color: #a090c8 !important;
+  font-size: 0.85rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.04em !important;
+  text-transform: uppercase !important;
+}
+
+/* ── Tables ─────────────────────────────────────────────────── */
+table {
+  width: 100% !important;
+  border-collapse: separate !important;
+  border-spacing: 0 !important;
+}
+
+table thead tr {
+  background: var(--end-mid) !important;
+}
+
+table thead th {
+  color: var(--end-lavender) !important;
+  font-family: var(--font-display) !important;
+  font-size: 0.8rem !important;
+  letter-spacing: 0.06em !important;
+  padding: 12px 16px !important;
+  border-bottom: 1px solid var(--end-border) !important;
+}
+
+table tbody tr {
+  background: var(--end-dark) !important;
+  transition: background 0.15s !important;
+}
+
+table tbody tr:hover {
+  background: var(--end-mid) !important;
+}
+
+table tbody td {
+  padding: 11px 16px !important;
+  border-bottom: 1px solid rgba(61, 45, 102, 0.4) !important;
+  color: var(--end-white) !important;
+}
+
+/* ── Status Badges / Pills ──────────────────────────────────── */
+[class*="status"],
+.badge,
+.pill,
+.tag {
+  border-radius: 20px !important;
+  padding: 3px 10px !important;
+  font-size: 0.75rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.03em !important;
+}
+
+/* Running / Online */
+[class*="running"], [class*="online"],
+.badge.success, .status-online {
+  background: rgba(104, 217, 160, 0.15) !important;
+  color: var(--end-success) !important;
+  border: 1px solid rgba(104, 217, 160, 0.4) !important;
+}
+
+/* Offline / Stopped */
+[class*="offline"], [class*="stopped"],
+.badge.danger, .status-offline {
+  background: rgba(224, 80, 96, 0.15) !important;
+  color: var(--end-danger) !important;
+  border: 1px solid rgba(224, 80, 96, 0.4) !important;
+}
+
+/* Starting / Installing */
+[class*="starting"], [class*="installing"],
+.badge.warning {
+  background: rgba(240, 192, 96, 0.15) !important;
+  color: var(--end-warning) !important;
+  border: 1px solid rgba(240, 192, 96, 0.4) !important;
+}
+
+/* ── Console / Terminal ─────────────────────────────────────── */
+.xterm,
+.terminal,
+[class*="Console"],
+[class*="console"] {
+  background: #060410 !important;
+  border: 1px solid var(--end-border) !important;
+  border-radius: var(--r-lg) !important;
+  box-shadow: inset 0 0 30px rgba(0,0,0,0.5), var(--glow-sm) !important;
+  font-family: var(--font-mono) !important;
+}
+
+.xterm-viewport::-webkit-scrollbar-thumb {
+  background: var(--end-glow) !important;
+}
+
+/* Console line colours */
+.xterm .xterm-rows span { color: #c8b8f0; }
+.xterm .xterm-rows span.bold { color: var(--end-lavender); }
+
+/* ── Progress Bars ──────────────────────────────────────────── */
+[class*="progress-bar"],
+progress,
+.progress {
+  background: var(--end-mid) !important;
+  border-radius: 10px !important;
+  overflow: hidden !important;
+  height: 6px !important;
+}
+
+[class*="progress-bar"] > *,
+progress::-webkit-progress-value,
+.progress .progress-fill {
+  background: linear-gradient(90deg, var(--end-glow), var(--end-chorus)) !important;
+  border-radius: 10px !important;
+  box-shadow: 0 0 8px rgba(193, 127, 255, 0.6) !important;
+}
+
+/* ── Stats / Gauge Circles ──────────────────────────────────── */
+[class*="StatBlock"],
+[class*="stat-block"],
+[class*="usage"] {
+  background: var(--end-dark) !important;
+  border: 1px solid var(--end-border) !important;
+  border-radius: var(--r-lg) !important;
+}
+
+/* ── Alerts / Notices ───────────────────────────────────────── */
+.alert, .notice, [class*="Alert"] {
+  border-radius: var(--r-md) !important;
+  border-left-width: 4px !important;
+  padding: 12px 16px !important;
+}
+
+.alert.success, .notice.success {
+  background: rgba(104, 217, 160, 0.08) !important;
+  border-left-color: var(--end-success) !important;
+  color: #9aeec4 !important;
+}
+
+.alert.danger, .notice.danger {
+  background: rgba(224, 80, 96, 0.08) !important;
+  border-left-color: var(--end-danger) !important;
+  color: #f4a0a8 !important;
+}
+
+.alert.warning, .notice.warning {
+  background: rgba(240, 192, 96, 0.08) !important;
+  border-left-color: var(--end-warning) !important;
+  color: #f8d888 !important;
+}
+
+.alert.info, .notice.info {
+  background: rgba(96, 184, 240, 0.08) !important;
+  border-left-color: var(--end-info) !important;
+  color: #90ccf4 !important;
+}
+
+/* ── Modal / Dialog ─────────────────────────────────────────── */
+.modal, .dialog, [class*="Modal"] {
+  background: var(--end-dark) !important;
+  border: 1px solid var(--end-border) !important;
+  border-radius: var(--r-lg) !important;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.7), var(--glow-lg) !important;
+  color: var(--end-white) !important;
+}
+
+.modal-backdrop, .overlay {
+  background: rgba(6, 4, 16, 0.75) !important;
+  backdrop-filter: blur(4px) !important;
+}
+
+/* ── Tabs ───────────────────────────────────────────────────── */
+[class*="Tab"],
+.tabs,
+.tab-bar {
+  border-bottom: 1px solid var(--end-border) !important;
+}
+
+[class*="Tab"] a,
+.tabs a,
+.tab {
+  color: #8070a8 !important;
+  padding: 10px 18px !important;
+  border-bottom: 2px solid transparent !important;
+  transition: all 0.2s !important;
+}
+
+[class*="Tab"] a:hover,
+.tabs a:hover {
+  color: var(--end-lavender) !important;
+}
+
+[class*="Tab"] a.active,
+.tabs a.active,
+.tab.active {
+  color: var(--end-chorus) !important;
+  border-bottom-color: var(--end-chorus) !important;
+}
+
+/* ── Top Header / Topbar ────────────────────────────────────── */
+header,
+.topbar,
+.top-bar,
+[class*="TopBar"],
+[class*="Header"] {
+  background: var(--end-deep) !important;
+  border-bottom: 1px solid var(--end-border) !important;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.5) !important;
+}
+
+/* ── Dragon Eye Favicon pulse (login page) ──────────────────── */
+@keyframes void-pulse {
+  0%, 100% { box-shadow: 0 0 20px rgba(155, 110, 224, 0.3); }
+  50%       { box-shadow: 0 0 40px rgba(155, 110, 224, 0.6), 0 0 80px rgba(124, 92, 191, 0.25); }
+}
+
+/* ── Login / Auth Page ──────────────────────────────────────── */
+[class*="auth"],
+[class*="login"],
+.login-box {
+  background: var(--end-dark) !important;
+  border: 1px solid var(--end-border) !important;
+  border-radius: var(--r-lg) !important;
+  box-shadow: 0 0 60px rgba(124, 92, 191, 0.2), 0 20px 60px rgba(0,0,0,0.6) !important;
+  animation: void-pulse 4s ease-in-out infinite !important;
+}
+
+/* ── Footer ─────────────────────────────────────────────────── */
+footer {
+  color: #5a4a7a !important;
+  border-top: 1px solid rgba(61, 45, 102, 0.3) !important;
+  font-size: 0.8rem !important;
+}
+
+/* ── File Manager ───────────────────────────────────────────── */
+[class*="FileRow"],
+[class*="file-row"],
+.file-row {
+  background: var(--end-dark) !important;
+  border-bottom: 1px solid rgba(61, 45, 102, 0.3) !important;
+  transition: background 0.15s !important;
+}
+
+[class*="FileRow"]:hover,
+[class*="file-row"]:hover {
+  background: var(--end-mid) !important;
+}
+
+/* ── Code Editor ────────────────────────────────────────────── */
+.CodeMirror,
+[class*="Editor"],
+.editor {
+  background: #060410 !important;
+  color: #c8b8f0 !important;
+  font-family: var(--font-mono) !important;
+  border: 1px solid var(--end-border) !important;
+  border-radius: var(--r-md) !important;
+}
+
+.CodeMirror-cursor { border-left: 2px solid var(--end-chorus) !important; }
+.CodeMirror-selected { background: rgba(155, 110, 224, 0.2) !important; }
+
+/* ── Misc Utilities ─────────────────────────────────────────── */
+hr, .divider {
+  border-color: var(--end-border) !important;
+  opacity: 0.5 !important;
+}
+
+.text-muted, [class*="muted"] {
+  color: #7060a0 !important;
+}
+
+.text-primary, [class*="text-primary"] {
+  color: var(--end-lavender) !important;
+}
+
+/* Tooltips */
+[class*="tooltip"], .tooltip {
+  background: var(--end-mid) !important;
+  border: 1px solid var(--end-border) !important;
+  color: var(--end-white) !important;
+  border-radius: var(--r-sm) !important;
+  box-shadow: var(--glow-sm) !important;
+}
+
+/* ── Ender Dragon decal on sidebar bottom ───────────────────── */
+.navigation-bar::after,
+.sidebar::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 120px;
+  background:
+    radial-gradient(ellipse at 50% 120%, rgba(124, 92, 191, 0.25) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* ── Specific Pterodactyl React selectors ───────────────────── */
+/* Navigation */
+[class^="NavigationBar__"],
+[class*=" NavigationBar__"] {
+  background: var(--end-dark) !important;
+}
+
+/* Sub-navigation */
+[class^="SubNavigation__"],
+[class*=" SubNavigation__"] {
+  background: var(--end-deep) !important;
+  border-bottom: 1px solid var(--end-border) !important;
+}
+
+/* Spinning loader */
+[class*="spinner"],
+.spinner {
+  border-color: var(--end-border) !important;
+  border-top-color: var(--end-purple) !important;
+}
+
+/* ============================================================
+   End of AvenoxTheme
+   ============================================================ */
